@@ -5,10 +5,15 @@ This project enables servo motor control through hand gestures using a Raspberry
 
 <div align="center">
     <video width="640" height="360" controls>
-  <source src="path/to/your-video.mp4" type="video/mp4">
+  <source src="images/![20241021_023926](https://github.com/user-attachments/assets/9e7605c2-f768-4052-ab7c-2ee1dac40155)
+" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 </div>
+
+![Live Demo](images/IMG_20241028_142506_978.jpg)
+[!Live Demo](/images/VID_38560221_232925_964.mp4)
+
 
 
 ## Table of Contents
