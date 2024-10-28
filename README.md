@@ -11,8 +11,13 @@ This project enables servo motor control through hand gestures using a Raspberry
 </video>
 </div>
 
-![Live Demo](images/IMG_20241028_142506_978.jpg)
-[!Live Demo](/images/VID_38560221_232925_964.mp4)
+<img src="Images/IMG_20241028_142506_978.jpg" alt="Alt text" width="300" height="500">    <img src="Images/IMG_20241028_142607_614.webp" alt="Alt text" width="300" height="500">    <img src="Images/20241021_023926.jpg" alt="Alt text" width="300" height="500">
+
+#### Live Demo
+<video width="640" height="360" controls>
+  <source src="Images/VID_38560221_232925_964.mp4">
+  Your browser does not support the video tag.
+</video>
 
 
 
@@ -78,7 +83,7 @@ gesture\Scripts\activate     # For Windows
 ```bash
 ls /dev/tty*
 ```
-- **Update the port name in app.py accordingly.**
+- **Update the port name in Hand_gesture.py accordingly.**
 
 ### Hardware Setup
 - **1. Connect the Servo Motor to the Arduino:**
@@ -95,7 +100,7 @@ source gesture/bin/activate  # For Linux
 ```
 - **Run the program:**
 ```bash
-python app.py
+python Hand_gesture.py
 ```
 
 ### Usage
@@ -104,7 +109,7 @@ python app.py
 - **3. The servo motor will rotate based on the detected angle.**
 
 ### Troubleshooting
-- **SerialException: Could not open port: Ensure the correct port is specified in app.py for the Arduino.**
+- **SerialException: Could not open port: Ensure the correct port is specified in Hand_gesture.py for the Arduino.**
 - **TypeError: Not a code object: This may be due to an incompatible Python version. Downgrade to Python 3.10 if using Python 3.11 or higher.**
 - **Servo not responding: Double-check the wiring and make sure the Arduino firmware is uploaded correctly.**
 
