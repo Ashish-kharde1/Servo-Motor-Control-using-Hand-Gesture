@@ -1,25 +1,15 @@
 # Servo Motor Control Using Hand Gesture
 
-This project enables servo motor control through hand gestures using a Raspberry Pi, Arduino, and an external camera. Leveraging edge computing, AI-powered computer vision, and robotics, this setup captures hand gestures and interprets the angle of the thumb and index finger to control the servo motor.
-
+This project enables servo motor control through hand gestures using computer vision and ESP32. Leveraging edge computing, AI-powered computer vision, and robotics, this setup captures hand gestures through a camera and interprets the angle of the thumb and index finger to control the servo motor.
 
 <div align="center">
     <video width="640" height="360" controls>
-  <source src="images/![20241021_023926](https://github.com/user-attachments/assets/9e7605c2-f768-4052-ab7c-2ee1dac40155)
-" type="video/mp4">
+  <source src="Images/VID_38560221_232925_964.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 </div>
 
-<img src="Images/IMG_20241028_142506_978.jpg" alt="Alt text" width="300" height="500">    <img src="Images/IMG_20241028_142607_614.webp" alt="Alt text" width="300" height="500">    <img src="Images/20241021_023926.jpg" alt="Alt text" width="300" height="500">
-
-#### Live Demo
-<video width="640" height="360" controls>
-  <source src="Images/VID_38560221_232925_964.mp4">
-  Your browser does not support the video tag.
-</video>
-
-
+<img src="Arduino/Images/IMG_20241028_142506_978.jpg" alt="Project Setup" width="300" height="500">    <img src="Arduino/Images/IMG_20241028_142607_614.webp" alt="Hand Gesture Demo" width="300" height="500">    <img src="Arduino/Images/20241021_023926.jpg" alt="Hardware Setup" width="300" height="500">
 
 ## Table of Contents
 - [Features](#features)
@@ -28,96 +18,91 @@ This project enables servo motor control through hand gestures using a Raspberry
 - [Hardware Setup](#hardware-setup)
 - [Running the Program](#running-the-program)
 - [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Features
-- Gesture-based control of a servo motor.
-- Real-time angle detection of thumb and index finger using computer vision.
-- Edge computing with Raspberry Pi for smooth operation without needing a powerful computer.
+- Gesture-based control of a servo motor
+- Real-time angle detection of thumb and index finger using computer vision
+- ESP32-based implementation for wireless control
+- Two implementation options:
+  - Arduino-based setup (Arduino folder)
+  - ESP32-based setup (ESP32 folder)
 
 ## Requirements
 ### Hardware
-- **Raspberry Pi** (preferably Raspberry Pi 4)
-- **Arduino** (e.g., Arduino Uno)
+- **ESP32** or **Arduino** (based on your preferred implementation)
 - **Servo Motor**
-- **Camera Module** (compatible with Raspberry Pi)
+- **Camera** (webcam or USB camera)
 - **Connecting wires**
 
 ### Software
-- **Python 3.10**
-- **Arduino IDE** (for flashing code onto the Arduino)
+- **Python 3.x**
+- **Arduino IDE** (for flashing code to ESP32/Arduino)
 - **Libraries**: 
   - OpenCV (for hand gesture recognition)
-  - PyFirmata2 (for Arduino communication with Python)
-  - Serial (for communication with Arduino)
   - Mediapipe (for computer vision)
+  - Required Python packages (specified in each implementation's requirements)
 
 ## Installation
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/hand-gesture-servo-control.git
-cd hand-gesture-servo-control
-```
-### 2. Set Up Python Environment
-- **Install Python 3.10 if not already installed on your system.**
-- **Create a virtual environment:**
-```bash
-python3.10 -m venv gesture
-source gesture/bin/activate  # For Linux
-gesture\Scripts\activate     # For Windows
+git clone https://github.com/yourusername/Servo-Motor-Control-using-Hand-Gesture.git
+cd Servo-Motor-Control-using-Hand-Gesture
 ```
 
-### 3. Set Up the Arduino
-- **Connect the Arduino to your Raspberry Pi or local system via USB.**
-- **Flash the StandardFirmata firmware onto the Arduino:**
-  - Open the Arduino IDE.
-  - Go to File > Examples > Firmata > StandardFirmata.
-  - Select the correct board and port.
-  - Click Upload.
+### 2. Choose Your Implementation
+The project provides two implementation options:
 
-### 4. Check Serial Port
-- **On Linux, check the port of the connected Arduino (usually /dev/ttyUSB0 or /dev/ttyACM0) with:**
+#### Arduino Implementation
+Navigate to the Arduino folder:
 ```bash
-ls /dev/tty*
+cd Arduino
 ```
-- **Update the port name in Hand_gesture.py accordingly.**
+Follow the setup instructions in the Arduino implementation's app.py file.
+
+#### ESP32 Implementation
+Navigate to the ESP32 folder:
+```bash
+cd Esp32
+```
+1. Flash the `servoMotorCode.ino` to your ESP32 using Arduino IDE
+2. Set up the Python environment and run app.py
 
 ### Hardware Setup
-- **1. Connect the Servo Motor to the Arduino:**
-  -Signal (Yellow/White wire) to Pin 9 on Arduino.
-  -Power (Red wire) to 5V on Arduino.
-  -Ground (Black wire) to GND on Arduino.
-- **Connect the Camera to the Raspberry Pi or attach a USB camera.**
-- **Connect the Arduino to the Raspberry Pi using a USB cable.**
+#### For ESP32:
+- Connect the Servo Motor to the ESP32:
+  - Signal wire to designated GPIO pin (specified in the code)
+  - Power (Red wire) to 5V
+  - Ground (Black wire) to GND
+- Ensure your camera is connected to your computer
+
+#### For Arduino:
+- Connect the Servo Motor to the Arduino:
+  - Signal wire to the designated pin (specified in the code)
+  - Power (Red wire) to 5V
+  - Ground (Black wire) to GND
+- Connect your camera to the computer
 
 ### Running the Program
-- **Activate the Python environment if not already activated:**
+1. Ensure your hardware is properly connected
+2. Run the appropriate Python script based on your implementation:
+
+For Arduino:
 ```bash
-source gesture/bin/activate  # For Linux
+python Arduino/app.py
 ```
-- **Run the program:**
+
+For ESP32:
 ```bash
-python Hand_gesture.py
+python Esp32/app.py
 ```
 
-### Usage
-- **1. Hold your hand in front of the camera.**
-- **2. The camera will capture the angle between your thumb and index finger.**
-- **3. The servo motor will rotate based on the detected angle.**
-
-### Troubleshooting
-- **SerialException: Could not open port: Ensure the correct port is specified in Hand_gesture.py for the Arduino.**
-- **TypeError: Not a code object: This may be due to an incompatible Python version. Downgrade to Python 3.10 if using Python 3.11 or higher.**
-- **Servo not responding: Double-check the wiring and make sure the Arduino firmware is uploaded correctly.**
-
-### Contributing
-- **Contributions are welcome! Please fork this repository and submit a pull request for review.**
+## Usage
+1. Make sure your camera has a clear view of your hand
+2. Use your thumb and index finger to create an angle
+3. The servo motor will rotate according to the angle formed by your fingers
+4. The program will display the detected hand landmarks and angle in real-time
 
 ## License
-
-This project is licensed under the **GNU General Public License v3.0** (GPL v3).
-
-**GPL v3** is a free, copyleft license for software. It guarantees end users the freedom to run, study, share, and modify the software. It also ensures that derivative works must also be licensed under the same terms, ensuring that the code remains open source. You can read more about the license [here](https://www.gnu.org/licenses/gpl-3.0.en.html).
+This project is licensed under the terms included in the LICENSE file.
